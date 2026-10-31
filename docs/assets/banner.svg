@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc">
+<title id="title">启程 Qicheng</title><desc id="desc">把部署准备变成看得见的四步：检查、安装、配置、验证。</desc>
+<rect width="1200" height="340" rx="18" fill="#f3f4ec"/>
+<path d="M0 294H1200" stroke="#d3ddcd"/>
+<rect x="50" y="48" width="68" height="76" rx="9" fill="#1b4a38"/>
+<text x="84" y="101" text-anchor="middle" font-family="serif" font-size="45" fill="#edf1df">启</text>
+<text x="140" y="91" font-family="serif" font-size="42" fill="#203b2e">启程</text>
+<text x="142" y="119" font-family="sans-serif" font-size="14" letter-spacing="5" fill="#6e836a">QICHENG</text>
+<text x="50" y="188" font-family="sans-serif" font-size="30" fill="#23553f">把工具装好，让想法开始。</text>
+<text x="52" y="226" font-family="sans-serif" font-size="17" fill="#6f806b">Claude Code · VS Code · CC Switch</text>
+<circle cx="969" cy="150" r="105" fill="none" stroke="#cbd9c3"/>
+<circle cx="969" cy="150" r="70" fill="none" stroke="#bcccaf" stroke-dasharray="5 6"/>
+<rect x="927" y="107" width="84" height="86" rx="12" fill="#21654c" transform="rotate(-8 969 150)"/>
+<text x="969" y="166" text-anchor="middle" font-family="monospace" font-size="36" fill="#edf3e5">&gt;_</text>
+<circle cx="1065" cy="109" r="7" fill="#b79e5a"/>
+<text x="53" y="321" font-family="sans-serif" font-size="14" letter-spacing="2" fill="#657a5e">01 环境检查　 →　 02 安装组件　 →　 03 连接模型　 →　 04 验证与交付</text>
+<text x="1108" y="321" text-anchor="end" font-family="monospace" font-size="12" fill="#89977f">OPEN SOURCE / ALPHA</text>
+</svg>

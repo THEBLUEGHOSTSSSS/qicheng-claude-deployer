@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.work/
+test-results/
+*.log
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Local verification artifacts and private project notes
+output/
+docs/ui-contract.md
+docs/项目经验.md
+docs/需求与方案.md
+docs/验收记录.md
+docs/老师快速上手.md
+docs/集成与安全.md
+.env
+.env.*
+*.pem
+*.key

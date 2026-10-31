@@ -1,0 +1,57 @@
+{
+  "name": "qicheng-claude-deployer",
+  "version": "0.1.0-alpha.1",
+  "private": true,
+  "description": "A transparent Windows setup companion for Claude Code, VS Code and CC Switch. 中文可视化部署向导。",
+  "author": "Qicheng contributors",
+  "license": "MIT",
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "preview": "electron . --preview",
+    "test": "node --test tests/*.test.cjs",
+    "test:ui": "node scripts/ui-smoke.cjs",
+    "build:win": "electron-builder --win zip --x64",
+    "package:delivery": "python3 scripts/package-delivery.py"
+  },
+  "devDependencies": {
+    "electron": "45.1.0",
+    "electron-builder": "26.18.0",
+    "playwright": "1.64.1"
+  },
+  "build": {
+    "appId": "local.qicheng.claudedeployer",
+    "productName": "Qicheng Deployer",
+    "asar": true,
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "signAndEditExecutable": false,
+      "artifactName": "Qicheng-Deployer-${version}-Windows-${arch}.zip"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/THEBLUEGHOSTSSSS/qicheng-claude-deployer.git"
+  },
+  "homepage": "https://github.com/THEBLUEGHOSTSSSS/qicheng-claude-deployer#readme",
+  "bugs": {
+    "url": "https://github.com/THEBLUEGHOSTSSSS/qicheng-claude-deployer/issues"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

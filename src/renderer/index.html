@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>启程 · Claude 部署器</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">启</span><div><strong>启程</strong><span>Claude 部署器</span></div></div>
+      <div class="side-label">从安装到第一次对话</div>
+      <nav aria-label="部署步骤">
+        <button class="nav-step active" data-step="environment" aria-current="step"><span class="step-number">01</span><span>环境检查<small>了解这台电脑</small></span><span class="nav-arrow" aria-hidden="true">↗</span></button>
+        <button class="nav-step" data-step="install"><span class="step-number">02</span><span>安装组件<small>准备工作环境</small></span><span class="nav-arrow" aria-hidden="true">↗</span></button>
+        <button class="nav-step" data-step="connect"><span class="step-number">03</span><span>连接模型<small>配置你的服务</small></span><span class="nav-arrow" aria-hidden="true">↗</span></button>
+        <button class="nav-step" data-step="verify"><span class="step-number">04</span><span>验证与交付<small>开始使用，留下记录</small></span><span class="nav-arrow" aria-hidden="true">↗</span></button>
+      </nav>
+      <div class="sidebar-note"><span class="tiny-dot"></span><strong>每一步，都可查看</strong><p>先检查，再修改。<br>原有配置会先备份。</p></div>
+      <footer class="side-footer"><span id="app-version">v0.1.0</span><span>Windows 首版</span></footer>
+    </aside>
+    <main>
+      <header class="topbar"><span>本地部署工作台 <span class="divider">/</span> <span id="section-label">环境检查</span></span><button class="text-button" data-action="open" data-id="docs">使用文档 <span aria-hidden="true">↗</span></button></header>
+      <div id="mode-banner" class="mode-banner" hidden></div>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <section class="page" id="page-environment" aria-labelledby="environment-title">
+        <div class="page-eyebrow"><span class="eyebrow-line"></span>01 / 准备就绪之前</div>
+        <div class="hero"><div><h1 id="environment-title">把工具装好。<br><em>让想法开始。</em></h1><p class="lead">检查这台电脑，补齐需要的组件。<br>我们一步步把 Claude Code 配置到可用。</p></div><div class="hero-visual" aria-hidden="true"><div class="orbit"></div><div class="orbit orbit-two"></div><div class="visual-square"><span>终端</span><strong>⌘</strong></div><div class="visual-label">CODE → CREATE</div><span class="visual-dot"></span></div></div>
+        <div class="section-heading"><h2>这台电脑的准备情况</h2><button class="button secondary small" data-action="status"><span aria-hidden="true">↻</span> 重新检查</button></div>
+        <div class="environment-strip"><div><span>当前系统</span><strong id="os-label">正在识别…</strong></div><div><span>目标环境</span><strong>Windows 10 / 11 · x64</strong></div><div><span>检测时间</span><strong id="scan-time">尚未检查</strong></div></div>
+        <div class="component-table" id="environment-components" aria-live="polite"></div>
+        <div class="config-line"><span class="mini-icon" aria-hidden="true">◇</span><div><strong id="config-state">配置文件 · 待检查</strong><p id="config-detail">仅检查必要状态，诊断报告不包含密钥。</p></div><button class="text-button" data-goto="connect">查看配置 →</button></div>
+        <div id="environment-warnings" class="warnings" hidden></div>
+        <div class="page-bottom"><p>检查通过后，还需要验证模型是否能实际回复。</p><button class="button primary" data-goto="install">下一步 · 安装组件 <span aria-hidden="true">→</span></button></div>
+      </section>
+
+      <section class="page" id="page-install" aria-labelledby="install-title" hidden>
+        <div class="page-eyebrow"><span class="eyebrow-line"></span>02 / 搭好工作环境</div>
+        <h1 id="install-title">需要的工具，<em>放在一起。</em></h1><p class="lead">按需安装，已有组件可直接跳过。安装过程需要联网，<br>系统可能提示权限确认，请保持部署器打开。</p>
+        <div class="section-heading"><h2>组件清单</h2><span class="quiet">来自官方分发渠道</span></div>
+        <div id="install-components" class="install-list"></div>
+        <div class="callout"><span class="callout-mark" aria-hidden="true">↔</span><div><h3>CC Switch，负责日后的服务切换</h3><p>部署器负责把环境准备好。CC Switch 是独立应用，用来管理多个服务商。这里安装官方 v4.0.22，并校验发布摘要。</p><button class="text-button" data-action="open" data-id="ccswitchDocs">了解 CC Switch ↗</button></div></div>
+        <div class="page-bottom"><p>缺少 WinGet？在 Microsoft Store 更新“应用安装程序”。</p><button class="button primary" data-goto="connect">下一步 · 连接模型 →</button></div>
+      </section>
+
+      <section class="page" id="page-connect" aria-labelledby="connect-title" hidden>
+        <div class="page-eyebrow"><span class="eyebrow-line"></span>03 / 接通你的模型服务</div>
+        <h1 id="connect-title">填好配置，<em>先看再保存。</em></h1><p class="lead">从服务商控制台复制 API 地址、密钥和模型 ID。<br>每次保存都会先备份，已有的其他设置会保留。</p>
+        <div class="connect-layout"><div class="form-card">
+          <div class="preset-row" aria-label="选择服务模板"><span>快速填写</span><button class="preset" data-preset="custom">自定义</button><button class="preset" data-preset="anthropic">Anthropic</button><button class="preset" data-preset="rayin">RayinAPI</button></div>
+          <form id="provider-form" autocomplete="off">
+            <label for="provider-name">服务名称</label><input id="provider-name" name="name" placeholder="例如：实验室模型服务" maxlength="80" value="自定义服务">
+            <label for="base-url">API 基址 <span class="required">必填</span></label><input id="base-url" name="baseUrl" placeholder="https://api.example.com" type="url" required maxlength="1000" spellcheck="false"><p class="field-help">使用 HTTPS，不要加 /v1 或 /messages。docs.rayinai.com 是文档站点。</p>
+            <label for="auth-type">认证方式</label><select id="auth-type" name="authType"><option value="auth_token">Bearer Token · 兼容服务商</option><option value="api_key">API Key · Anthropic 官方</option></select>
+            <label for="api-key">API 密钥 <span class="required">必填</span></label><div class="password-field"><input id="api-key" name="apiKey" type="password" placeholder="粘贴你的 API Key" required maxlength="4096" autocomplete="off" spellcheck="false"><button type="button" id="toggle-key" aria-label="显示密钥">显示</button></div><p class="field-help">不会写入诊断报告。保存配置时，会写入 Claude 的本机明文配置文件。</p>
+            <label for="model">模型 ID <span class="optional">连接测试时必填</span></label><input id="model" name="model" placeholder="从服务商控制台复制完整模型 ID" maxlength="180" spellcheck="false"><p class="field-help">留空保存时使用客户端默认模型；服务商必须支持 Anthropic Messages 协议。</p>
+            <div class="form-actions"><button type="button" class="button secondary" data-action="previewConfig">预览修改</button><button type="button" class="button primary" data-action="applyConfig" disabled>备份并保存</button></div>
+          </form>
+        </div><aside class="connection-aside"><div class="aside-heading">一次配置，两处使用</div><div class="connection-flow"><span>服务商 API</span><i aria-hidden="true">↓</i><span>Claude Code</span><i aria-hidden="true">↓</i><span>VS Code 图形面板</span></div><p>配置文件：<code>~/.claude/settings.json</code></p><div class="aside-rule"></div><h3>交给 CC Switch 管理</h3><p>通过官方导入协议打开确认窗口。请先安装 CC Switch，导入后再选择是否启用。</p><button class="button secondary full" data-action="importCcSwitch">导入 CC Switch ↗</button><small>系统深链接会携带密钥；导入前会再次说明。不要分享该链接。</small><button class="text-button" data-action="open" data-id="rayin">查看 RayinAPI 配置说明 ↗</button></aside></div>
+        <div id="config-preview" class="preview-box" hidden><div class="section-heading"><h2>即将发生的修改</h2><span class="quiet">密钥已隐藏</span></div><p id="preview-path" class="quiet"></p><div id="preview-changes"></div><p id="preview-warnings" class="field-help"></p></div>
+        <div class="page-bottom"><button class="text-button" data-action="restore">↶ 恢复最近一次配置</button><button class="button primary" data-goto="verify">下一步 · 验证与使用 →</button></div>
+      </section>
+
+      <section class="page" id="page-verify" aria-labelledby="verify-title" hidden>
+        <div class="page-eyebrow"><span class="eyebrow-line"></span>04 / 走到真正可用</div>
+        <h1 id="verify-title">能连上，<em>也要能用上。</em></h1><p class="lead">先做一次短请求，再在图形界面中完成第一次对话。<br>配置正常、接口可用、客户端可用，是三项不同的检查。</p>
+        <div class="test-card"><div class="test-icon" aria-hidden="true">↗</div><div class="test-content"><h2>发送一条最小测试请求</h2><p>使用“连接模型”中当前填写的配置，只发送固定文本，不附带文件。<br>可能产生少量服务商费用，不会自动重试。</p><div id="test-state" class="test-state"><span class="status-badge unknown">未测试</span><span>请先填写服务配置和模型 ID。</span></div><button class="button primary" data-action="testConnection">发送一次测试（可能计费）</button><button class="text-button" data-goto="connect">返回填写配置 →</button></div></div>
+        <div class="section-heading"><h2>在 VS Code 中开始</h2><button class="button secondary small" data-action="open" data-id="vscode">打开 VS Code ↗</button></div>
+        <ol class="usage-steps"><li><span>1</span><div><h3>打开一个工作文件夹</h3><p>在 VS Code 选择“文件 → 打开文件夹”，使用准备开展工作的目录。</p></div></li><li><span>2</span><div><h3>打开 Claude 面板</h3><p>点击 Claude 图标，或在命令面板搜索 Claude Code。保存配置后，请先重启 VS Code。</p></div></li><li><span>3</span><div><h3>完成第一次对话</h3><p>可以先问“请说明你可以如何帮助我”。第三方服务若仍提示登录，请检查 Disable Login Prompt 设置。</p><button class="text-button" data-action="open" data-id="loginSettings">打开登录提示设置 ↗</button></div></li></ol>
+        <div class="report-row"><div><h3>有问题时，把诊断结果带走</h3><p>导出检查状态，方便定位问题。不含密钥、配置备份或聊天记录。</p></div><button class="button secondary" data-action="exportReport">导出诊断报告 ↓</button></div>
+        <p class="release-note">首版交付边界：Windows 安装、CC Switch 导入和老师的实际账户，仍需在目标电脑上完成验收。</p>
+      </section>
+      <footer class="main-footer"><span>QICHENG <i>·</i> 从准备，到开始。</span><span id="operation-label">仅在你选择后执行操作</span></footer>
+    </main>
+  </div>
+</body>
+</html>
